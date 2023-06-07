@@ -1,1 +1,1 @@
-This is a file to test merging settings. 
+This is a file for testing merging settings. 
