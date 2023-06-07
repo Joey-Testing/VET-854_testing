@@ -24,5 +24,5 @@ jobs:
         run: |
           git fetch origin pull/${{ github.event.pull_request.number }}/head:pr/${{ github.event.pull_request.number }}
           git checkout pr/${{ github.event.pull_request.number }}
-          git rebase origin/${{ steps.default_branch.outputs.default_branch }}
+          git rebase VET-854_testing/main
           git push --force-with-lease origin HEAD:pr/${{ github.event.pull_request.number }}
