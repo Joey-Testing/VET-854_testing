@@ -15,13 +15,14 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Install Git
-        run: sudo apt-get install -y git
+      - name: Get default branch
+        id: default_branch
+        run: echo "default_branch=$(git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@')" >> $GITHUB_ENV
+
 
       - name: Auto-rebase PR
         run: |
           git fetch origin pull/${{ github.event.pull_request.number }}/head:pr/${{ github.event.pull_request.number }}
           git checkout pr/${{ github.event.pull_request.number }}
-          git rebase ${{ github.base_ref }}
+          git rebase origin/${{ steps.default_branch.outputs.default_branch }}
           git push --force-with-lease origin HEAD:pr/${{ github.event.pull_request.number }}
-
