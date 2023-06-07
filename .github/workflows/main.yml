@@ -21,6 +21,6 @@ jobs:
       - name: Auto-rebase PR
         run: |
           git fetch origin pull/${{ github.event.pull_request.number }}/head:pr/${{ github.event.pull_request.number }}
-          git rebase pr/${{ github.event.pull_request.number }}
-          git push --force-with-lease
-      
+          git checkout pr/${{ github.event.pull_request.number }}
+          git rebase origin/main
+          git push --force-with-lease origin HEAD:pr/${{ github.event.pull_request.number }}
