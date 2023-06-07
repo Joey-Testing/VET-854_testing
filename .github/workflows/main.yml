@@ -22,5 +22,5 @@ jobs:
         run: |
           git fetch origin pull/${{ github.event.pull_request.number }}/head:pr/${{ github.event.pull_request.number }}
           git checkout pr/${{ github.event.pull_request.number }}
-          git rebase origin/main
+          git rebase origin/${{ github.base_ref }}
           git push --force-with-lease origin HEAD:pr/${{ github.event.pull_request.number }}
