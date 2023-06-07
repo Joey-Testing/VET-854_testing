@@ -20,8 +20,7 @@ jobs:
 
       - name: Auto-rebase PR
         run: |
-          git fetch --prune origin "+refs/pull/*/merge:"
-          git rebase origin/${{ github.head_ref }}
-          git push -f
-          
-        
+          git fetch origin pull/${{ github.event.pull_request.number }}/head:pr/${{ github.event.pull_request.number }}
+          git rebase pr/${{ github.event.pull_request.number }}
+          git push --force-with-lease
+      
