@@ -1,9 +1,0 @@
-This is a file for testing merging settings. 
-
-This is a new sentence. 
-
-This is another new sentence. 
-
-And Another...
-
-Testing 123
