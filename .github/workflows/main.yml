@@ -26,3 +26,4 @@ jobs:
           force: false
           # Optional: Custom commit message for the rebase
           commit-message: 'Rebased onto latest main branch'
+
