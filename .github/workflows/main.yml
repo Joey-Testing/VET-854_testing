@@ -15,15 +15,13 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Auto-rebase PR
-        uses: repo-sync/repo-sync@v1
-        with:
-          # The branch name to rebase when a PR is closed or labeled
-          branch: main
-          # The labels to trigger the rebase (comma-separated)
-          labels: ready-for-rebase
-          # If set to "true", the rebase will be forced
-          force: false
-          # Optional: Custom commit message for the rebase
-          commit-message: 'Rebased onto latest main branch'
+      - name: Install Git
+        run: sudo apt-get install -y git
 
+      - name: Auto-rebase PR
+        run: |
+          git fetch --prune origin "+refs/pull/*/merge:"
+          git rebase origin/${{ github.head_ref }}
+          git push -f
+          
+        
