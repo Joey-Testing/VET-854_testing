@@ -1,0 +1,28 @@
+name: Auto-rebase PR
+
+on:
+  pull_request:
+    types:
+      - closed
+      - labeled
+      - synchronize
+
+jobs:
+  auto_rebase:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Auto-rebase PR
+        uses: repo-sync/repo-sync@v2
+        with:
+          # The branch name to rebase when a PR is closed or labeled
+          branch: main
+          # The labels to trigger the rebase (comma-separated)
+          labels: ready-for-rebase
+          # If set to "true", the rebase will be forced
+          force: false
+          # Optional: Custom commit message for the rebase
+          commit-message: 'Rebased onto latest main branch'
