@@ -1,1 +1,3 @@
 This is a file to test merging settings. 
+
+This is a new sentence. 
